@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: course_management
+      MYSQL_ROOT_PASSWORD: test
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  springboot-app:
+    build: .
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/course_management
+      - SPRING_DATASOURCE_USERNAME=root 
+      - SPRING_DATASOURCE_PASSWORD=test
+    container_name: epi-management-app
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mysql
+   
+volumes:
+  mysql_data:
