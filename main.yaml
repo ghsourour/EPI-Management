@@ -1,0 +1,58 @@
+---
+- name: Installer Jenkins sur la machine
+  hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+
+    - name: Installer les dépendances
+      apt:
+        name:
+          - curl
+          - gnupg
+          - software-properties-common
+        state: present
+
+    - name: Télécharger la clé GPG Jenkins
+      shell: |
+        curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
+      args:
+        warn: false
+
+    - name: Ajouter le repository Jenkins avec la clé signée
+      shell: |
+        echo "deb [signed-by=/usr/share/keyrings/jenkins.gpg] https://pkg.jenkins.io/debian-stable binary/" | tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+      args:
+        warn: false
+
+    - name: Mettre à jour le cache apt après ajout du repo
+      apt:
+        update_cache: yes
+
+    - name: Installer Java
+      apt:
+        name: openjdk-17-jdk
+        state: present
+
+    - name: Installer Jenkins
+      apt:
+        name: jenkins
+        state: present
+
+    - name: Démarrer le service Jenkins
+      systemd:
+        name: jenkins
+        state: started
+        enabled: yes
+
+    - name: Attendre que Jenkins génère le mot de passe
+      wait_for:
+        path: /var/lib/jenkins/secrets/initialAdminPassword
+        state: present
+        timeout: 60
+
+    - name: Afficher le mot de passe initial
+      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: jenkins_password
+      changed_when: false
+
