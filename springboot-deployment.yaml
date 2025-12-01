@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: springboot
-        image: epi-management_springboot-app:latest
-        imagePullPolicy: IfNotPresent
+        image: ghsourour/epiman:latest
+        imagePullPolicy: Always
         env:
         - name: SPRING_DATASOURCE_URL
           value: "jdbc:mysql://mysql-service:3306/course_management"
