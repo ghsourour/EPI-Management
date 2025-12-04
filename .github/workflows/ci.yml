@@ -19,7 +19,7 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
          dockerfile: Dockerfile     
-         format: tty   
+         format: table 
 
       - name: Construire l'image Docker localement  
         run: |
@@ -32,8 +32,8 @@ jobs:
       - name: Run dockle
         uses: goodwithtech/dockle-action@main
         with:
-          image: 'eppepi'
-          format: 'table'     
+          image: eppepi
+          format: table     
 
       - name: Taguer et pousser l'image sur Docker Hub
         run: |
