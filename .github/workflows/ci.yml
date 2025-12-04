@@ -40,7 +40,11 @@ jobs:
          docker tag eppepi ${{ secrets.DOCKER_USERNAME }}/eppepi:v1 || true
          docker push ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
 
-
+      - name: Run dockle
+        uses: goodwithtech/dockle-action@main
+        with:
+          image: eppepi:v1
+          format: table 
       
       - name: Scanner l'image avec Trivy 
         continue-on-error: true
