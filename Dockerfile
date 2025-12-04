@@ -1,5 +1,7 @@
 FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
 WORKDIR /app
+RUN apt-get update
+
 COPY pom.xml .
 RUN mvn dependency:go-offline -B      
 COPY src ./src
