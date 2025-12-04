@@ -19,7 +19,7 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
          dockerfile: Dockerfile     
-         format: table 
+         format: github-annotation
 
       - name: Construire l'image Docker localement  
         run: |
@@ -39,7 +39,7 @@ jobs:
       - name: Run dockle
         uses: goodwithtech/dockle-action@main
         with:
-          image: eppepi:v1
+          image: ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
           format: table 
       
       - name: Scanner l'image avec Trivy 
