@@ -18,7 +18,8 @@ jobs:
       - name: verfier dockerfile avec hadolint
         uses: hadolint/hadolint-action@v3.1.0
         with:
-         dockerfile: Dockerfile        
+         dockerfile: Dockerfile     
+         format: tty   
 
       - name: Construire l'image Docker localement  
         run: |
@@ -32,7 +33,7 @@ jobs:
         uses: goodwithtech/dockle-action@main
         with:
           image: 'eppepi'
-          format: 'list'     
+          format: 'table'     
 
       - name: Taguer et pousser l'image sur Docker Hub
         run: |
