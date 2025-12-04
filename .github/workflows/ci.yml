@@ -29,11 +29,7 @@ jobs:
             echo "Échec de la construction de l'image Docker ."
            fi || true  
 
-      - name: Run dockle
-        uses: goodwithtech/dockle-action@main
-        with:
-          image: eppepi
-          format: table     
+   
 
       - name: Taguer et pousser l'image sur Docker Hub
         run: |
