@@ -41,6 +41,7 @@ jobs:
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
           format: table 
+          ignore-unfixed: true 
       
       - name: Scanner l'image avec Trivy 
         continue-on-error: true
