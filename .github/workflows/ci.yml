@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest  
+    env:
+      DOCKER_CONTENT_TRUST: 1
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4   
@@ -23,7 +25,6 @@ jobs:
     
       - name: Construire l'image Docker localement  
         run: |
-           export DOCKER_CONTENT_TRUST=1
            if docker build -t eppepi . ; then
             echo "Image Docker eppepi construite avec succès."
            else
