@@ -1,13 +1,13 @@
 FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
 WORKDIR /app
-RUN apk update && apk upgrade
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 COPY pom.xml .
 RUN mvn dependency:go-offline -B      
 COPY src ./src
 RUN mvn clean package -DskipTests 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-RUN apk update && apk upgrade
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
 RUN addgroup -S spring && adduser -S spring -G spring
 
