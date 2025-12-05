@@ -10,7 +10,7 @@ RUN addgroup -S spring && adduser -S spring -G spring
 
 COPY --from=builder --chown=spring:spring /app/target/*.jar app.jar
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD nc -z localhost 9090 || true
+  CMD nc -z localhost 9090 || exit 1
 
 USER spring
 EXPOSE 9090
