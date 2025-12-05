@@ -1,4 +1,4 @@
-FROM maven:3.9.6-eclipse AS builder
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
 WORKDIR /app
 RUN apk update && apk upgrade
 COPY pom.xml .

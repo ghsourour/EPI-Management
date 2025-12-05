@@ -28,7 +28,8 @@ jobs:
       - name: verfier dockerfile avec hadolint
         uses: hadolint/hadolint-action@v3.1.0
         with:
-         dockerfile: Dockerfile     
+         dockerfile: Dockerfile 
+        format: text    
     
       - name: Construire l'image Docker localement  
         run: |
