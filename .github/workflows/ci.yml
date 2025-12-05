@@ -16,7 +16,13 @@ jobs:
         continue-on-error: true
         with:
           config: auto 
-          format: table
+          #format: table
+          args: --json --output semgrep-results.json
+      - name: Upload Semgrep report
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-report
+          path: semgrep-results.json
       
 
       - name: Se connecter à Docker Hub
