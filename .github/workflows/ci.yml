@@ -20,7 +20,7 @@ jobs:
           format: json          # Pour un fichier JSON (lisible par GitHub)
           output: semgrep-results.json
       - name: Upload Semgrep results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
          name: semgrep-report
          path: semgrep-results.json
