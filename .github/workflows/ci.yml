@@ -43,8 +43,9 @@ jobs:
           image: ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
           format: table 
           exit-level: info
-          exit-code: 0 
           args: --accept-key
+          exit-code: 0 
+          
       
     
 
