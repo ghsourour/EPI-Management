@@ -26,7 +26,7 @@ RUN apk update && apk upgrade
 WORKDIR /app
 
 # 9. Mauvaise pratique : ADD au lieu de COPY (ADD a des comportements spéciaux)
-ADD --from=builder /app/target/*.jar app.jar
+COPY --from=builder /app/target/*.jar app.jar
 
 # 10. Mauvaise pratique : Utiliser root au lieu d'un utilisateur non-privilégié
 # USER root
