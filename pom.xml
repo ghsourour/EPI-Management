@@ -5,8 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.3.5</version>  <!-- MIS À JOUR DE 3.3.3 → 3.3.5 -->
+        <relativePath/>
     </parent>
     <groupId>com.epi</groupId>
     <artifactId>course-management</artifactId>
@@ -16,9 +16,17 @@
     <properties>
         <java.version>17</java.version>
         <sonar.organization>ghasseen-epi-management</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>    
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        
+        <!-- VERSIONS SÉCURISÉES POUR LES DÉPENDANCES TRANSITIVES -->
+        <logback.version>1.5.19</logback.version>
+        <tomcat.version>10.1.35</tomcat.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
+        <!-- Spring Security 6.3.5 est déjà inclus dans Spring Boot 3.3.5 -->
     </properties>
+    
     <dependencies>
+        <!-- Vos dépendances restent identiques -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
