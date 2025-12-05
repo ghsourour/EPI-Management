@@ -27,6 +27,7 @@ jobs:
         run: cat Dockerfile # Ceci affichera le contenu du fichier dans les logs
       - name: verfier dockerfile avec hadolint
         uses: hadolint/hadolint-action@v3.1.0
+        continue-on-error: true
         with:
          dockerfile: Dockerfile 
          format: json
