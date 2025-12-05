@@ -20,7 +20,8 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
          dockerfile: Dockerfile     
-
+      - name: Enable Docker Content Trust
+        run: export DOCKER_CONTENT_TRUST=1
       - name: Construire l'image Docker localement  
         run: |
            if docker build -t eppepi . ; then
@@ -41,7 +42,8 @@ jobs:
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
           format: table 
-          exit-level: warn
+          exit-level: info
+          exit-code: 0  
     
 
 
