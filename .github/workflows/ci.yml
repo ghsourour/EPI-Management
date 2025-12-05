@@ -16,6 +16,15 @@ jobs:
         with:
           # Configuration par défaut (recommandé pour commencer)
           config: auto 
+          continue-on-error: true
+          format: json          # Pour un fichier JSON (lisible par GitHub)
+          output: semgrep-results.json
+      - name: Upload Semgrep results
+        uses: actions/upload-artifact@v3
+        with:
+         name: semgrep-report
+         path: semgrep-results.json
+
       - name: Se connecter à Docker Hub
         uses: docker/login-action@v2
         with:
