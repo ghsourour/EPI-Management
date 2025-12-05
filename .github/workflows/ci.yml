@@ -41,7 +41,15 @@ jobs:
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
           format: table 
-          ignore-unfixed: true 
+          exit-level: fatal 
+          accept-key: |
+           JAVA_VERSION
+           JAVA_HOME
+           PATH
+           ARCH
+           LANG
+           --chmod
+           --chown
       
       - name: Scanner l'image avec Trivy 
         continue-on-error: true
