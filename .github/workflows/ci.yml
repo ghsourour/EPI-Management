@@ -29,8 +29,13 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
          dockerfile: Dockerfile 
-         format: text    
-    
+         format: json
+         output-file: hadolint-results.json
+      - name: Upload Hadolint results
+        uses: actions/upload-artifact@v4
+        with:
+         name: hadolint-results
+         path: hadolint-results.json
       - name: Construire l'image Docker localement  
         run: |
            if docker build -t eppepi . ; then
