@@ -29,7 +29,7 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
          dockerfile: Dockerfile 
-        format: text    
+         format: text    
     
       - name: Construire l'image Docker localement  
         run: |
