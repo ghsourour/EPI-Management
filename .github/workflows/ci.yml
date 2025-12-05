@@ -10,6 +10,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4   
+
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          # Configuration par défaut (recommandé pour commencer)
+          config: auto 
       - name: Se connecter à Docker Hub
         uses: docker/login-action@v2
         with:
