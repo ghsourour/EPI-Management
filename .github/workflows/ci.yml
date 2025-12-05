@@ -15,10 +15,8 @@ jobs:
         uses: returntocorp/semgrep-action@v1
         continue-on-error: true
         with:
-          # Configuration par défaut (recommandé pour commencer)
           config: auto 
-          format: text
-        
+          format: table
       
 
       - name: Se connecter à Docker Hub
