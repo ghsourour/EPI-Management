@@ -54,9 +54,6 @@ jobs:
           exit-level: info
           args: --accept-key
           exit-code: 0 
-          
-      
-    
 
 
       - name: Scanner l'image avec Trivy 
