@@ -32,7 +32,9 @@ pipeline{
         stage('Scan image with Trivy') {
             steps {
                 sh """
-                  trivy image --severity LOW,HIGH,CRITICAL --exit-code 0 --no-progress --skip-version-check --timeout 10m --format json --output trivy-results.json ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG} || true
+                trivy image --format table --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
+                trivy image --format json --output trivy-report.json ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
+                  trivy image --severity LOW,HIGH,CRITICAL --exit-code 0  ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG} || true
                 """
             }
         }
