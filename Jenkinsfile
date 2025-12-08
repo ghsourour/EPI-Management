@@ -33,9 +33,7 @@ pipeline{
             steps {
                 sh """
                 trivy image --format table --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
-                trivy image --format json --output trivy-report.json ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
-                  trivy image --severity LOW,HIGH,CRITICAL --exit-code 0  ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG} || true
-                """
+s                """
             }
         }
         stage('push to dockerhub'){
