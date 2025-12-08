@@ -32,7 +32,7 @@ pipeline{
         stage('Scan image with Trivy') {
             steps {
                 sh """
-                trivy image --format table --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
+                trivy image --scanners vuln  ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
 s                """
             }
         }
