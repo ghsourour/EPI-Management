@@ -70,10 +70,5 @@ jobs:
           severity: LOW,MEDIUM,CRITICAL
           scanners: vuln
           ignore-unfixed: true  
-          format: json
-          output-file: trivy-results.json 
-      - name: Upload Hadolint results
-        uses: actions/upload-artifact@v4
-        with:
-         name: trivy-results
-         path: trivy-results.json          
+        
+            
