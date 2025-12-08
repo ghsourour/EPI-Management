@@ -32,7 +32,7 @@ pipeline{
         stage('Scan image with Trivy') {
             steps {
                 sh """
-                    trivy image --severity HIGH,CRITICAL --exit-code 0 --no-progress ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG} || true
+                  trivy image --severity LOW,HIGH,CRITICAL --exit-code 0 --no-progress --skip-version-check --timeout 10m --format json --output trivy-results.json ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG} || true
                 """
             }
         }
@@ -45,7 +45,7 @@ pipeline{
                         passwordVariable: 'DOCKER_PASS' 
                     )]){
                         sh '''
-                        echo "🔐 Authentification sur Docker Hub..."
+                        echo " Authentification sur Docker Hub..."
                         echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                         docker push ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG}
                       '''
