@@ -12,7 +12,7 @@ WORKDIR /app
 RUN addgroup -S spring && adduser -S spring -G spring
 
 COPY --from=builder  /app/target/*.jar app.jar
-RUN chown spinrg:spring app.jar
+RUN chown spring:spring app.jar
 USER spring
 
 #HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
