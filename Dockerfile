@@ -10,6 +10,7 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 RUN addgroup -S spring && adduser -S spring -G spring
+RUN apk update && apk upgrade && rm -rf /var/cache/apk/*
 
 COPY --from=builder  /app/target/*.jar app.jar
 RUN chown spring:spring app.jar

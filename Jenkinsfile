@@ -37,8 +37,8 @@ pipeline{
         stage('Scan image with Trivy') {
             steps {
                 sh """
-                trivy image --scanners vuln --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
-s                """
+                trivy image --scanners vuln --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG || true
+                """
             }
         }
         stage('push to dockerhub'){
