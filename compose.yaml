@@ -10,6 +10,8 @@ services:
     ports:
       - "3307:3306"
     read_only: true   
+    security_opt:
+      - no-new-privileges:true
     volumes:
       - mysql_data:/var/lib/mysql
 
