@@ -5,7 +5,7 @@ RUN apk update && apk upgrade && rm -rf /var/cache/apk/*
 COPY pom.xml .
 RUN mvn dependency:go-offline -B      
 COPY src ./src
-RUN mvn clean package -DskipTests 
+RUN mvn clean package -DskipTests -U
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
