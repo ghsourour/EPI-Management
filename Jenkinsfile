@@ -37,7 +37,7 @@ pipeline{
         stage('Scan image with Trivy') {
             steps {
                 sh """
-                trivy image --scanners vuln --skip-db-update --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG || true
+                trivy image --scanners vuln  --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG || true
                 """
             }
         }
