@@ -23,6 +23,9 @@ spec:
           value: "test"
         ports:
         - containerPort: 3306
+        securityContext:
+         allowPrivilegeEscalation: false
+         runAsNonRoot: true 
         volumeMounts:  
         - name: mysql-storage
           mountPath: /var/lib/mysql
