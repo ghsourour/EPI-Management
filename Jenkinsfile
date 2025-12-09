@@ -1,4 +1,9 @@
 pipeline{
+     options {
+        timeout(time: 45, unit: 'MINUTES')
+    }
+    
+
     agent any
     triggers {
         pollSCM('H/2 * * * *')  
@@ -32,7 +37,7 @@ pipeline{
         stage('Scan image with Trivy') {
             steps {
                 sh """
-                trivy image --scanners vuln  ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
+                trivy image --scanners vuln --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
 s                """
             }
         }
