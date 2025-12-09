@@ -25,6 +25,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}  
       - name: View Dockerfile content for debugging
         run: cat Dockerfile # Ceci affichera le contenu du fichier dans les logs
+      - name: verifier avec gitleaks 
+        uses: gitleaks/gitleaks-action@v2
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} 
       - name: verfier dockerfile avec hadolint
         uses: hadolint/hadolint-action@v3.1.0
         continue-on-error: true
