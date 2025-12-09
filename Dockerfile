@@ -3,6 +3,8 @@ WORKDIR /app
 RUN apk update && apk upgrade && rm -rf /var/cache/apk/*
 
 COPY pom.xml .
+#RUN rm -rf /root/.m2/repository/*
+
 RUN mvn dependency:go-offline -B      
 COPY src ./src
 RUN mvn clean package -DskipTests -U
