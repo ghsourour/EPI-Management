@@ -1,33 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.5</version>  <!-- MIS À JOUR DE 3.3.3 → 3.3.5 -->
+        <version>3.4.5</version> <!-- Spring Boot mis à jour -->
         <relativePath/>
     </parent>
+
     <groupId>com.epi</groupId>
     <artifactId>course-management</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>course-management</name>
     <description>Online Course Management System</description>
+
     <properties>
         <java.version>17</java.version>
         <sonar.organization>ghasseen-epi-management</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        
-        <!-- VERSIONS SÉCURISÉES POUR LES DÉPENDANCES TRANSITIVES -->
+
+        <!-- Versions sécurisées pour dépendances -->
         <logback.version>1.5.19</logback.version>
         <tomcat.version>11.0.12</tomcat.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
-         <spring.version>6.1.20</spring.version>
-        <!-- Spring Security 6.3.5 est déjà inclus dans Spring Boot 3.3.5 -->
+        <spring.version>6.1.20</spring.version>
     </properties>
-    
+
     <dependencies>
-        <!-- Vos dépendances restent identiques -->
+        <!-- Dépendances Spring corrigées pour vulnérabilités -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>6.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>6.4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>6.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>6.2.10</version>
+        </dependency>
+
+        <!-- Dépendances Spring Boot classiques -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
