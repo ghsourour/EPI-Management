@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: epi-management
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ghsourour/EPI-Management.git
+    targetRevision: main
+    path: "."  # Prend TOUS les fichiers YAML du dossier racine
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: mon-namespace-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
