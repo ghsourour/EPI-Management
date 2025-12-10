@@ -45,7 +45,7 @@ jobs:
       - name: Construire l'image Docker localement  
         run: |
            if docker build -t epi-management_springboot-app . ; then
-            echo "Image Docker eppepi construite avec succès."
+            echo "Image Docker epi-management_springboot-app construite avec succès."
            else
             echo "Échec de la construction de l'image Docker ."
            fi || true  
@@ -54,7 +54,7 @@ jobs:
 
       - name: Taguer et pousser l'image sur Docker Hub
         run: |
-         docker tag eppepi ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2 || true
+         docker epi-management_springboot-app ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2 || true
          docker push ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2
 
       - name: Run dockle
