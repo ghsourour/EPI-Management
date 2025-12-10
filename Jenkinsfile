@@ -83,7 +83,6 @@ pipeline{
                       git config user.email "sourourghannem7@gmail.com"
                       git config user.name "ghsourour"
                       git add  k8s/springboot-deployment.yaml
-                      git config user.email "sourourghannem7@gmail.com"
                       git commit -m "Update image tag to ${IMAGE_TAG}" || echo "Nothing to commit"
                       git push https://${GITHUB_TOKEN}@github.com/ghsourour/EPI-Management.git main
 
