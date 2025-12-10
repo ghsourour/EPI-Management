@@ -77,7 +77,7 @@ pipeline{
                 updateK8sManifest(
                     manifest_paths: ['k8s/springboot-deployment.yaml'],
                     image: IMAGE_NAME,
-                    tag: IMAGE_TAG
+                
                 )
             }
         }
