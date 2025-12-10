@@ -76,8 +76,7 @@ pipeline{
         stage('Update K8s Manifests'){
             steps{
                 script{
-                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')])
-                           
+                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]){
                     sh """         
                       sed -i 's|image:.*${IMAGE_NAME}:.*|image: ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG}|g' k8s/springboot-deployment.yaml
                       git config user.email "sourourghannem7@gmail.com"
@@ -87,6 +86,9 @@ pipeline{
                       git push https://${GITHUB_TOKEN}@github.com/ghsourour/EPI-Management.git main
 
                     """
+                 }
+                           
+
                   
                 }
             }
