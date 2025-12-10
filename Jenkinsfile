@@ -26,9 +26,23 @@ pipeline{
         sh "ls -la"
        }
       }
+        stage('semgrep test'){
+            steps{
+                sh """
+                echo "Running Semgrep..."
+                semgrep --config=auto --json --output semgrep-report.json || true
+                """
+            }
+        }     
+        stage('Publish Report'){
+            steps{
+                archiveArtifacts artifacts: 'semgrep-report.json', fingerprint: true
+            }
+        }
         stage('build image'){
             steps{
                 script{
+                
                     sh "docker build -t ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG ."
                 }
 
