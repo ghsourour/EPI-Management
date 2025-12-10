@@ -44,7 +44,7 @@ jobs:
          path: hadolint-results.json
       - name: Construire l'image Docker localement  
         run: |
-           if docker build -t eppepi . ; then
+           if docker build -t epi-management_springboot-app . ; then
             echo "Image Docker eppepi construite avec succès."
            else
             echo "Échec de la construction de l'image Docker ."
@@ -54,13 +54,13 @@ jobs:
 
       - name: Taguer et pousser l'image sur Docker Hub
         run: |
-         docker tag eppepi ${{ secrets.DOCKER_USERNAME }}/eppepi:v1 || true
-         docker push ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
+         docker tag eppepi ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2|| true
+         docker push ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2
 
       - name: Run dockle
         uses: goodwithtech/dockle-action@main
         with:
-          image: ${{ secrets.DOCKER_USERNAME }}/eppepi:v1
+          image: ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2
           format: table 
           exit-level: info
           args: --accept-key
@@ -71,7 +71,7 @@ jobs:
         continue-on-error: true
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: eppepi
+          image-ref: epi-management_springboot-app
           severity: LOW,MEDIUM,CRITICAL
           scanners: vuln
           ignore-unfixed: true  

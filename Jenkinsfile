@@ -11,7 +11,7 @@ pipeline{
     environment{
         DOCKERHUB_ID = "ghsourour"
         IMAGE_NAME = "epi-management_springboot-app"
-        IMAGE_TAG = "latest"
+        IMAGE_TAG = "v2"
 
     }
     
@@ -75,9 +75,9 @@ pipeline{
         stage('Update K8s Manifests'){
             steps{
                 updateK8sManifest(
-                    manifest_paths: ['springboot-deployment.yaml'],
+                    manifest_paths: ['k8s/springboot-deployment.yaml'],
                     image: IMAGE_NAME,
-                    tag: IMAGE_TAG,
+                    tag: IMAGE_TAG
                 )
             }
         }

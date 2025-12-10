@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ghsourour/EPI-Management.git
     targetRevision: main
-    path: "."  # Prend TOUS les fichiers YAML du dossier racine
+    path: "k8s"  
   destination:
     server: "https://kubernetes.default.svc"
     namespace: mon-namespace-test
