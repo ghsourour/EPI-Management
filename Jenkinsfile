@@ -72,6 +72,17 @@ pipeline{
                 }
             }
         }
+        stage('Update K8s Manifests'){
+            steps{
+                updateK8sManifest(
+                    manifest_paths: ['springboot-deployment.yaml'],
+                    image: IMAGE_NAME,
+                    tag: IMAGE_TAG,
+                )
+            }
+        }
+         
+
    
     }
 }
