@@ -54,7 +54,7 @@ jobs:
 
       - name: Taguer et pousser l'image sur Docker Hub
         run: |
-         docker tag eppepi ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2|| true
+         docker tag eppepi ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2 || true
          docker push ${{ secrets.DOCKER_USERNAME }}/epi-management_springboot-app:v2
 
       - name: Run dockle
