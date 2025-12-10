@@ -16,7 +16,7 @@ jobs:
         continue-on-error: true
         with:
           config: auto 
-          format: table
+          format: json
 
       - name: Se connecter à Docker Hub
         uses: docker/login-action@v2
