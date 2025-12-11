@@ -37,7 +37,7 @@ pipeline{
 
             }
         }
-  
+       
         stage('push to dockerhub'){
             steps{
                 script{
@@ -59,7 +59,7 @@ pipeline{
             steps{
                 script{
                  withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]){
-                    sh '''       
+                    sh """       
                       sed -i 's|image:.*${IMAGE_NAME}:.*|image: ${DOCKERHUB_ID}/${IMAGE_NAME}:${IMAGE_TAG}|g' k8s/springboot-deployment.yaml
                       git config user.email "sourourghannem7@gmail.com"
                       git config user.name "ghsourour"
@@ -69,7 +69,7 @@ pipeline{
                       echo "echo $GITHUB_TOKEN" > $GIT_ASKPASS
                       chmod +x $GIT_ASKPASS
                       git push https://github.com/ghsourour/EPI-Management.git main
-                    '''
+                    """
                  }
                            
 
