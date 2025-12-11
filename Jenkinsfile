@@ -79,6 +79,9 @@ pipeline{
                  withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]){
                     sh """     
                     #!/bin/bash
+                    IMAGE_NAME=${env.IMAGE_NAME}
+                    DOCKERHUB_ID=${env.DOCKERHUB_ID}
+                    IMAGE_TAG=${env.IMAGE_TAG}
                     sed -i "s|image:.*${env.IMAGE_NAME}:.*|image: ${env.DOCKERHUB_ID}/${env.IMAGE_NAME}:${env.IMAGE_TAG}|g" k8s/springboot-deployment.yaml
                     git config user.name "ghsourour"
                     git add k8s/springboot-deployment.yaml
