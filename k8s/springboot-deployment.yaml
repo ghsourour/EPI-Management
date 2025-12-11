@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: springboot
-        image: ghsourour/epi-management_springboot-app:144
+        image: ghsourour/epi-management_springboot-app:145
         imagePullPolicy: Always
         env:
         - name: SPRING_DATASOURCE_URL
