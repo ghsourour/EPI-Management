@@ -27,7 +27,7 @@ pipeline{
         sh "ls -la"
        }
       }
-    
+      
         stage('build image'){
             steps{
                 script{
@@ -37,7 +37,7 @@ pipeline{
 
             }
         }
-     
+  
         stage('push to dockerhub'){
             steps{
                 script{
@@ -64,7 +64,7 @@ pipeline{
                       git config user.email "sourourghannem7@gmail.com"
                       git config user.name "ghsourour"
                       git add  k8s/springboot-deployment.yaml
-                      git commit -m "Update image tag to ${IMAGE_TAG} [ci skip]" || true
+                      git commit -m "Update image tag to ${IMAGE_TAG} [skip ci]" || echo "Nothing to commit"
                       export GIT_ASKPASS=$(mktemp)
                       echo "echo $GITHUB_TOKEN" > $GIT_ASKPASS
                       chmod +x $GIT_ASKPASS
@@ -82,3 +82,4 @@ pipeline{
    
     }
 }
+ 
