@@ -27,8 +27,7 @@ pipeline{
         sh "ls -la"
        }
       }
-    
-        }
+   
         stage('build image'){
             steps{
                 script{
@@ -38,7 +37,7 @@ pipeline{
 
             }
         }
- 
+    
         stage('push to dockerhub'){
             steps{
                 script{
@@ -66,8 +65,10 @@ pipeline{
                       git config user.name "ghsourour"
                       git add  k8s/springboot-deployment.yaml
                       git commit -m "Update image tag to ${IMAGE_TAG} [ci skip]"
-                      git push https://${GITHUB_TOKEN}@github.com/ghsourour/EPI-Management.git main
-
+                      export GIT_ASKPASS=$(mktemp)
+                      echo "echo $GITHUB_TOKEN" > $GIT_ASKPASS
+                      chmod +x $GIT_ASKPASS
+                      git push https://github.com/ghsourour/EPI-Management.git main
                     '''
                  }
                            
