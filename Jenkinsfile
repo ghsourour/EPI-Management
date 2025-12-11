@@ -82,7 +82,7 @@ pipeline{
                       git config user.email "sourourghannem7@gmail.com"
                       git config user.name "ghsourour"
                       git add  k8s/springboot-deployment.yaml
-                      git commit -m 'Update image tag to ' + "${IMAGE_TAG}" + ' [skip ci]'
+                      git commit -m "Update image tag  [skip ci]" || echo "Nothing to commit"
                       export GIT_ASKPASS=$(mktemp)
                       echo "echo $GITHUB_TOKEN" > $GIT_ASKPASS
                       chmod +x $GIT_ASKPASS
