@@ -84,8 +84,8 @@ pipeline{
                     git add k8s/springboot-deployment.yaml
                     git commit -m "Update image tag [skip ci]" || echo "Nothing to commit"
                     export GIT_ASKPASS=$(mktemp)
-                    echo "echo \$GITHUB_TOKEN" > \$GIT_ASKPASS
-                    chmod +x \$GIT_ASKPASS
+                    echo "echo $GITHUB_TOKEN" > $GIT_ASKPASS
+                    chmod +x $GIT_ASKPASS
                     git push https://github.com/ghsourour/EPI-Management.git main
                     """
                  }
