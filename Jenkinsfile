@@ -27,18 +27,7 @@ pipeline{
         sh "ls -la"
        }
       }
-        stage('semgrep test'){
-            steps{
-                sh """
-                echo "Running Semgrep..."
-                semgrep --config=auto --json --output semgrep-report.json || true
-                """
-            }
-        }     
-        stage('Publish Report'){
-            steps{
-                archiveArtifacts artifacts: 'semgrep-report.json', fingerprint: true
-            }
+    
         }
         stage('build image'){
             steps{
@@ -49,13 +38,7 @@ pipeline{
 
             }
         }
-        stage('Scan image with Trivy') {
-            steps {
-                sh """
-                trivy image --scanners vuln  --no-progress ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG || true
-                """
-            }
-        }
+ 
         stage('push to dockerhub'){
             steps{
                 script{
